@@ -1,13 +1,13 @@
 state("N++")
 {
 	int gameTime : "npp.dll", 0xE8F4B8, 0x7CC8;
-	int levelsCompleted : "npp.dll", 0xE8F4B8, 0x810, 0x100;
+	int exitsEntered : "npp.dll", 0xE8F4B8, 0x810, 0x158;
+	int gameState : "npp.dll", 0x14B4270, 0x2B1157C;
 }
 
 start
 {
 	vars.totalTime = 0.0;
-	vars.levelsCompl = old.levelsCompleted;
 }
 
 update
@@ -20,9 +20,8 @@ update
 
 split
 {
-	if (current.levelsCompleted > vars.levelsCompl + 1) 
+	if ((current.exitsEntered > old.exitsEntered) && (current.gameState == 3 || current.gameState == 4)) 
 	{
-		vars.levelsCompl = current.levelsCompleted;
 		return true;
 	}
 }
