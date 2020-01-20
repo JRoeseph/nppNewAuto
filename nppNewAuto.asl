@@ -34,7 +34,7 @@ update
 
 split
 {
-	if (vars.hasSplit && current.gameState == 1)
+	if (vars.hasSplit && !(current.gameState == 3 || current.gameState == 4 || current.gameState == 5))
 	{
 		vars.hasSplit = false;
 	}
