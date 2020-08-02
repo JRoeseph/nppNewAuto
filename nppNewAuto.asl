@@ -2,6 +2,7 @@ state("N++")
 {
 	int gameTime : "npp.dll", 0x5E2628, 0x7CC8;
 	int exitsEntered : "npp.dll", 0x5E2628, 0x810, 0x158;
+	int deaths : "npp.dll", 0x5E2628, 0x810, 0x40;
 }
 
 startup
@@ -23,7 +24,7 @@ update
 
 split
 {
-	if (current.exitsEntered > old.exitsEntered)
+	if (current.exitsEntered > old.exitsEntered && current.deaths == old.deaths)
 	{
 		return true;
 	}
