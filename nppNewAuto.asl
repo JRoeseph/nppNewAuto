@@ -40,5 +40,6 @@ isLoading
 }
 
 gameTime
+{
 	return TimeSpan.FromSeconds(System.Convert.ToDouble(vars.totalTime));
 }
