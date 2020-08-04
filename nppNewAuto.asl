@@ -11,19 +11,13 @@ startup
 
 start
 {
-	vars.totalFrames = 0.0;
+	vars.totalTime = 0.0;
 }
 
 update
 {
 	if (current.gameTime > old.gameTime) {
-		vars.totalFrames+=(current.gameTime-old.gameTime);
-	}
-	if (current.deaths > old.deaths) {
-		vars.totalFrames+=1;
-	}
-	if (current.exitsEntered > old.exitsEntered) {
-		vars.totalFrames+=1;
+		vars.totalTime+=(current.gameTime-old.gameTime)/60.0;
 	}
 	return true;
 }
@@ -46,7 +40,5 @@ isLoading
 }
 
 gameTime
-{
-	vars.totalTime = vars.totalFrames/60.0;
 	return TimeSpan.FromSeconds(System.Convert.ToDouble(vars.totalTime));
 }
