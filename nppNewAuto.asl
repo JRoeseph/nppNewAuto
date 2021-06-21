@@ -3,6 +3,10 @@ state("N++")
 	int gameTime : "npp.dll", 0x5E2628, 0x7CC8;
 	int exitsEntered : "npp.dll", 0x5E2628, 0x810, 0x158;
 	int deaths : "npp.dll", 0x5E2628, 0x810, 0x40;
+	int retries : "npp.dll", 0x5E2628, 0x810, 0xF0;
+	int levelStart : "npp.dll", 0x5E2628, 0x810, 0xD8;
+	
+	int levelID : "npp.dll", 0x5E2628, 0x898;
 }
 
 startup
@@ -11,7 +15,13 @@ startup
 
 start
 {
-	vars.totalTime = 0.0;
+	vars.totalTime = 1 / 60.0;
+
+	if (current.levelStart > old.levelStart && current.gameTime < 2)
+	{
+		vars.totalTime += 1 / 60.0;
+		return true;
+	}
 }
 
 update
@@ -19,13 +29,17 @@ update
 	if (current.gameTime > old.gameTime) {
 		vars.totalTime+=(current.gameTime-old.gameTime)/60.0;
 	}
-	return true;
+	
+	if (current.deaths > old.deaths || current.retries > old.retries){
+		vars.totalTime += 1 / 60.0;
+	}
 }
 
 split
 {
 	if (current.exitsEntered > old.exitsEntered && current.deaths == old.deaths)
 	{
+		vars.totalTime += 1 / 60.0;
 		return true;
 	}
 }
