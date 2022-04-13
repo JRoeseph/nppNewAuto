@@ -11,15 +11,16 @@ state("N++")
 
 startup
 {
+	vars.running = false;
 }
 
 start
 {
 	vars.totalTime = 1 / 60.0;
 
-	if (current.levelStart > old.levelStart && current.gameTime < 2)
+	if (current.levelStart > old.levelStart && !vars.running && old.gameTime == 0)
 	{
-		vars.totalTime += 1 / 60.0;
+		vars.running = true;
 		return true;
 	}
 }
@@ -46,6 +47,7 @@ split
 
 reset
 {
+	vars.running = false;
 }
 
 isLoading
