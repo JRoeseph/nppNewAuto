@@ -1,12 +1,12 @@
 state("N++")
 {
-	int gameTime : "npp.dll", 0x4F1964, 0x8548;
-	int exitsEntered : "npp.dll", 0x4F1964, 0x810, 0x158;
-	int deaths : "npp.dll", 0x4F1964, 0x810, 0x40;
-	int retries : "npp.dll", 0x4F1964, 0x810, 0xF0;
-	int levelStart : "npp.dll", 0x4F1964, 0x810, 0xD8;
+	int gameTime : "npp.dll", 0x4F39E4, 0x8548;
+	int exitsEntered : "npp.dll", 0x4F39E4, 0x810, 0x158;
+	int deaths : "npp.dll", 0x4F39E4, 0x810, 0x40;
+	int retries : "npp.dll", 0x4F39E4, 0x810, 0xF0;
+	int levelStart : "npp.dll", 0x4F39E4, 0x810, 0xD8;
 	
-	int levelID : "npp.dll", 0x4F1964, 0x898;
+	int levelID : "npp.dll", 0x4F39E4, 0x898;
 }
 
 startup
